@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[SYSTEM_INIT] // SECURE_NODE_ACCESS</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Terminal Styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fira Code', 'Share Tech Mono', monospace;
+            background-color: #030712;
+            color: #22c55e;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Rain Canvas */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        /* Neon & Glow Styling */
+        .neon-border {
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.25), inset 0 0 15px rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+        }
+
+        .neon-text-glow {
+            text-shadow: 0 0 8px rgba(34, 197, 94, 0.8), 0 0 15px rgba(34, 197, 94, 0.4);
+        }
+
+        .neon-button {
+            background: rgba(34, 197, 94, 0.05);
+            border: 1px solid #22c55e;
+            transition: all 0.25s ease;
+        }
+
+        .neon-button:hover {
+            background: rgba(34, 197, 94, 0.25);
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.6);
+            transform: translateY(-1px);
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            animation: glitch 2.5s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 0 #00ff00, -2px 0 0 #00ffff; }
+            2% { text-shadow: 2px 0 0 #00ff00, -2px 0 0 #00ffff; }
+            4% { text-shadow: 0 0 0 transparent; }
+            100% { text-shadow: 0 0 0 transparent; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #22c55e;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6 select-none relative">
+
+    <!-- Matrix Digital Rain Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Main Container -->
+    <main class="relative z-10 w-full max-w-2xl bg-black/85 backdrop-blur-md neon-border rounded-xl p-6 sm:p-8 space-y-6">
+        
+        <!-- Terminal Header -->
+        <header class="border-b border-green-500/30 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div>
+                <h1 class="text-xl sm:text-2xl font-bold tracking-wider glitch text-green-400 flex items-center gap-2">
+                    <span class="inline-block w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                    PROJECT_CIVIC_INIT
+                </h1>
+                <p class="text-xs text-green-600 mt-1">[NODE_ID: ZA-8849] // ENCRYPTED PROTOCOL</p>
+            </div>
+            <div id="step-indicator" class="text-xs text-green-500/70 bg-green-950/40 px-3 py-1 rounded border border-green-500/20">
+                STEP: 01 / 04
+            </div>
+        </header>
+
+        <!-- Form Form Container -->
+        <div id="form-content" class="min-h-[320px] flex flex-col justify-between space-y-6">
+
+            <!-- QUESTION 1 -->
+            <div id="step-1" class="step-panel space-y-5">
+                <div class="space-y-2">
+                    <span class="text-xs text-green-500/60 uppercase tracking-widest">[QUERY_01]</span>
+                    <h2 class="text-lg sm:text-xl font-semibold text-green-300">What are you voting for?</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <button type="button" onclick="handleQ1('ANC')" class="neon-button text-left p-3.5 rounded text-sm text-green-300 font-medium">1. ANC</button>
+                    <button type="button" onclick="handleQ1('EFF')" class="neon-button text-left p-3.5 rounded text-sm text-green-300 font-medium">2. EFF</button>
+                    <button type="button" onclick="handleQ1('REBEL')" class="neon-button text-left p-3.5 rounded text-sm text-green-300 font-medium">3. I'm a rebel</button>
+                    <button type="button" onclick="handleQ1('ACTION_SA')" class="neon-button text-left p-3.5 rounded text-sm text-green-300 font-medium">4. Action SA</button>
+                    <button type="button" onclick="handleQ1('DA')" class="neon-button text-left p-3.5 rounded text-sm text-green-300 font-medium">5. DA</button>
+                    <button type="button" onclick="handleQ1('FF_PLUS')" class="neon-button text-left p-3.5 rounded text-sm text-green-300 font-medium">6. FF Plus</button>
+                </div>
+            </div>
+
+            <!-- QUESTION 2 -->
+            <div id="step-2" class="step-panel space-y-5 hidden">
+                <div class="space-y-2">
+                    <span class="text-xs text-green-500/60 uppercase tracking-widest">[QUERY_02]</span>
+                    <h2 class="text-lg sm:text-xl font-semibold text-green-300">Enter Contact Information</h2>
+                    <p class="text-xs text-green-500/70">Phone number is optional but required for full system clearance.</p>
+                </div>
+                <div class="space-y-4 pt-2">
+                    <div>
+                        <label for="phone-input" class="block text-xs text-green-400 mb-1">PHONE NUMBER:</label>
+                        <input type="tel" id="phone-input" placeholder="+27 XX XXX XXXX" class="w-full bg-black/90 border border-green-500/50 rounded p-3 text-green-300 text-sm focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 transition-all placeholder-green-800">
+                    </div>
+                    <div class="flex items-center justify-end gap-3 pt-4">
+                        <button type="button" onclick="handleQ2(true)" class="px-4 py-2.5 rounded text-xs text-green-600 hover:text-green-400 border border-transparent hover:border-green-800 transition-all">
+                            [SKIP_STEP]
+                        </button>
+                        <button type="button" onclick="handleQ2(false)" class="neon-button px-6 py-2.5 rounded text-xs text-green-300 font-semibold tracking-wider uppercase">
+                            CONFIRM & NEXT &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUESTION 3 -->
+            <div id="step-3" class="step-panel space-y-5 hidden">
+                <div class="space-y-2">
+                    <span class="text-xs text-green-500/60 uppercase tracking-widest">[QUERY_03]</span>
+                    <h2 class="text-lg sm:text-xl font-semibold text-green-300">Have you been personally affected by an influx of illegal immigrants?</h2>
+                </div>
+                <div class="space-y-4 pt-2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <button type="button" id="q3-yes-btn" onclick="toggleQ3Elaborate(true)" class="neon-button p-3.5 rounded text-center text-sm text-green-300 font-medium">YES</button>
+                        <button type="button" id="q3-no-btn" onclick="toggleQ3Elaborate(false)" class="neon-button p-3.5 rounded text-center text-sm text-green-300 font-medium">NO</button>
+                    </div>
+
+                    <!-- Conditional Dynamic Comment Field -->
+                    <div id="q3-comment-box" class="space-y-2 hidden transition-all duration-300">
+                        <label for="q3-comment" class="block text-xs text-green-400">ELABORATE DETAILS (e.g., lost job, operating space impact, or known person affected):</label>
+                        <textarea id="q3-comment" rows="3" placeholder="Provide context..." class="w-full bg-black/90 border border-green-500/50 rounded p-3 text-green-300 text-sm focus:outline-none focus:border-green-400 focus:ring-1 focus:ring-green-400 placeholder-green-800"></textarea>
+                    </div>
+
+                    <div class="flex justify-end pt-2">
+                        <button type="button" onclick="handleQ3Next()" class="neon-button px-6 py-2.5 rounded text-xs text-green-300 font-semibold tracking-wider uppercase">
+                            SUBMIT RESPONSE &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUESTION 4 -->
+            <div id="step-4" class="step-panel space-y-5 hidden">
+                <div class="space-y-2">
+                    <span class="text-xs text-green-500/60 uppercase tracking-widest">[QUERY_04]</span>
+                    <h2 class="text-lg sm:text-xl font-semibold text-green-300">What educational level should SAPS have to qualify to join the police force?</h2>
+                </div>
+                <div class="space-y-3 pt-2">
+                    <button type="button" onclick="handleQ4('NO_MATTER')" class="neon-button w-full text-left p-3.5 rounded text-sm text-green-300 font-medium">1. Doesn't matter</button>
+                    <button type="button" onclick="handleQ4('PASSION')" class="neon-button w-full text-left p-3.5 rounded text-sm text-green-300 font-medium">2. As long as they have passion to fight crime</button>
+                    <button type="button" onclick="handleQ4('GRADE_12')" class="neon-button w-full text-left p-3.5 rounded text-sm text-green-300 font-medium">3. Grade 12</button>
+                    <button type="button" onclick="handleQ4('LAW_DEGREE')" class="neon-button w-full text-left p-3.5 rounded text-sm text-green-300 font-medium">4. Higher education in law</button>
+                </div>
+            </div>
+
+            <!-- COMPLETION / OUTCOME PANEL -->
+            <div id="outcome-panel" class="step-panel space-y-6 hidden my-auto text-center py-6">
+                <!-- Success State -->
+                <div id="success-outcome" class="space-y-5 hidden">
+                    <div class="inline-block p-3 bg-green-500/10 border border-green-500/30 rounded-full text-green-400 mb-2 animate-bounce">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-green-400 tracking-wider neon-text-glow">SYSTEM CLEARANCE GRANTED</h2>
+                    <p class="text-sm text-green-300/80 max-w-md mx-auto">Your evaluations align with the core protocols of our community.</p>
+                    <div class="pt-4">
+                        <a href="https://2no.co/2Pc9G5" target="_blank" rel="noopener noreferrer" class="neon-button inline-block px-8 py-4 rounded-lg text-sm font-bold text-green-300 tracking-widest neon-text-glow animate-pulse hover:animate-none">
+                            WELCOME. CLICK HERE TO GET A STEP AHEAD
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Fail State -->
+                <div id="fail-outcome" class="space-y-4 hidden">
+                    <h2 class="text-lg sm:text-xl font-medium text-green-400">Thank you so much for participating, see you soon.</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Terminal Footer status -->
+        <footer class="border-t border-green-500/20 pt-4 flex justify-between items-center text-[10px] text-green-600 uppercase tracking-widest">
+            <span>SECURE_SESSION: ACTIVE</span>
+            <span>RSA_NODE // 2026</span>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Matrix Digital Rain Canvas Background ---
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const fontSize = 14;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(3, 7, 18, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#22c55e';
+            ctx.font = fontSize + 'px monospace';
+
+            columns = Math.floor(canvas.width / fontSize);
+            if (drops.length < columns) {
+                while (drops.length < columns) drops.push(1);
+            }
+
+            for (let i = 0; i < columns; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 33);
+
+        // --- Questionnaire State & Logic ---
+        let currentStep = 1;
+        let userScore = 0;
+        const totalPointsPossible = 3; // Q1 (1), Q2 (1), Q4 (1). Q3 is qualitative context.
+        let q3SelectedChoice = null;
+
+        function updateStepIndicator(stepNum) {
+            const indicator = document.getElementById('step-indicator');
+            if (stepNum <= 4) {
+                indicator.innerText = `STEP: 0${stepNum} / 04`;
+            } else {
+                indicator.innerText = `STATUS: COMPLETE`;
+            }
+        }
+
+        function showStep(stepNum) {
+            document.querySelectorAll('.step-panel').forEach(panel => panel.classList.add('hidden'));
+            const targetStep = document.getElementById(`step-${stepNum}`);
+            if (targetStep) {
+                targetStep.classList.remove('hidden');
+            }
+            updateStepIndicator(stepNum);
+        }
+
+        // Q1 Handler: Action SA is the required choice for 100%
+        function handleQ1(choice) {
+            if (choice === 'ACTION_SA') {
+                userScore++;
+            }
+            currentStep = 2;
+            showStep(2);
+        }
+
+        // Q2 Handler: Filling the phone number grants the point, skipping forfeits it
+        function handleQ2(skipped) {
+            const phoneVal = document.getElementById('phone-input').value.trim();
+            if (!skipped && phoneVal.length > 0) {
+                userScore++;
+            }
+            currentStep = 3;
+            showStep(3);
+        }
+
+        // Q3 Option toggle & comment reveal
+        function toggleQ3Elaborate(isYes) {
+            q3SelectedChoice = isYes ? 'YES' : 'NO';
+            const commentBox = document.getElementById('q3-comment-box');
+            const yesBtn = document.getElementById('q3-yes-btn');
+            const noBtn = document.getElementById('q3-no-btn');
+
+            if (isYes) {
+                commentBox.classList.remove('hidden');
+                yesBtn.classList.add('bg-green-500/30', 'border-green-400');
+                noBtn.classList.remove('bg-green-500/30', 'border-green-400');
+            } else {
+                commentBox.classList.add('hidden');
+                noBtn.classList.add('bg-green-500/30', 'border-green-400');
+                yesBtn.classList.remove('bg-green-500/30', 'border-green-400');
+            }
+        }
+
+        function handleQ3Next() {
+            currentStep = 4;
+            showStep(4);
+        }
+
+        // Q4 Handler: Higher education in law is required for 100%
+        function handleQ4(choice) {
+            if (choice === 'LAW_DEGREE') {
+                userScore++;
+            }
+            evaluateOutcome();
+        }
+
+        // Evaluate internally (100% score required)
+        function evaluateOutcome() {
+            document.querySelectorAll('.step-panel').forEach(panel => panel.classList.add('hidden'));
+            document.getElementById('outcome-panel').classList.remove('hidden');
+            updateStepIndicator(5);
+
+            if (userScore === totalPointsPossible) {
+                document.getElementById('success-outcome').classList.remove('hidden');
+            } else {
+                document.getElementById('fail-outcome').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
